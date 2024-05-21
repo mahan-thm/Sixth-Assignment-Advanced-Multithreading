@@ -40,7 +40,8 @@ public class PiCalculator {
         public void run() {
 
 
-//___________________________first way:
+//___________________________first way (Nilakantha series):
+
 //            if (Integer.parseInt(String.valueOf(n)) % 2 == 0) {
 //                BigDecimal numerator = new BigDecimal(4);
 //                BigDecimal denominator = new BigDecimal(((2 * n) * ((2 * n) + 1) * ((2 * n) + 2)) * (-1));
@@ -54,7 +55,7 @@ public class PiCalculator {
 //            }
 
 
-// ___________________________second way:
+// ___________________________second way (Bailey-Borwein-Plouffe Formula):
             MathContext mathContext = new MathContext(1000);
             BigDecimal x = new BigDecimal(16).pow(n);
             BigDecimal a = new BigDecimal((8 * n) + 1);
@@ -95,7 +96,7 @@ public class PiCalculator {
 
     public static String calculate(int floatingPoint) {
         pi = BigDecimal.ZERO;
-        ExecutorService threadPool = Executors.newFixedThreadPool(5);
+        ExecutorService threadPool = Executors.newFixedThreadPool(10);
         for (int i = 0; i <= 10000; i++) {  //first way should start with i=1
             SectionCalculate sectionCalculate = new SectionCalculate(i);
             threadPool.execute(sectionCalculate);
