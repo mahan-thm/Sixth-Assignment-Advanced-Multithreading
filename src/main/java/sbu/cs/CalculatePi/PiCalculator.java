@@ -94,8 +94,9 @@ public class PiCalculator {
     }
 
     public static String calculate(int floatingPoint) {
+        pi = BigDecimal.ZERO;
         ExecutorService threadPool = Executors.newFixedThreadPool(5);
-        for (int i = 0; i <= 100; i++) {  //first way should start with i=1
+        for (int i = 0; i <= 10000; i++) {  //first way should start with i=1
             SectionCalculate sectionCalculate = new SectionCalculate(i);
             threadPool.execute(sectionCalculate);
         }
